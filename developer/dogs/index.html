@@ -1,4 +1,3 @@
-<!-- jnji taki button@ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +7,9 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <select>
-        <option>-- Select a breed --</option>
-        <option>Akita</option>
-        <option>Beagle</option>
-        <option>Dalmatian German Shepherd Husky</option>
-        <option>Labrador</option>
-        <option>Pug</option>
-        <option>Golden Retriever Cocker Spaniel</option>
-    </select>
-    <button>jnji es buttn@</button>
-    <div id="result">
-        <img src="" />
+    <select id="listAllBreeds" onchange="getDog((this))"></select>
+    <div id="imgResult">
+        <img />
     </div>
     <script src="./index.js"></script>
 </body>
