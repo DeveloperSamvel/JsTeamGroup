@@ -6,10 +6,11 @@ function getDog(elementsBox) {
 
     if (breed === "") {
         document.querySelector("#imgResult").querySelector("img").setAttribute('src', "");
-
         return;
     }
 
+
+    breed = breed.replace('-', '/');
     const apiUrl = `https://dog.ceo/api/breed/${breed}/images/random`;
     const options = {
         method: 'GET',
@@ -43,6 +44,7 @@ function getListAllBreeds() {
         }
     };
 
+
     return fetch(apiUrl, options)
         .then(response => {
             if (!response.ok) {
@@ -52,23 +54,32 @@ function getListAllBreeds() {
             return response.json()
         })
         .then(data => {
-            if(data.message) {
-                let arrOption = Object.keys(data.message);
+            let breeds = data.message;
+            if(breeds) {
                 let newOption = document.createElement("option");
                 const newContent = document.createTextNode("-- Select a breed --");
                 newOption.setAttribute("value", '');
                 newOption.appendChild(newContent);
                 document.querySelector("#listAllBreeds").appendChild(newOption);
-    
-                arrOption.forEach((option) => {
-                    let newOptionInForEach = document.createElement("option")
-                    const newContentInForEach = document.createTextNode(option);
-                    newOptionInForEach.setAttribute("value", option);
-                    newOptionInForEach.appendChild(newContentInForEach);
-                    document.querySelector("#listAllBreeds").appendChild(newOptionInForEach);
-                });
 
-                console.log("option typeof", Object.keys(data.message));
+                for (const bread in breeds) {
+                    if (breeds[bread].length) {
+                        for (const item of breeds[bread]) {
+                            let newBreadInForEach = document.createElement("option")
+                            const newContentInForEach = document.createTextNode(`${item} ${bread}`);
+                            newBreadInForEach.setAttribute("value", `${bread}-${item}`);
+                            newBreadInForEach.appendChild(newContentInForEach);
+                            document.querySelector("#listAllBreeds").appendChild(newBreadInForEach);
+                        }
+                    }
+                    else {
+                        let newBreadInForEach = document.createElement("option")
+                        const newContentInForEach = document.createTextNode(bread);
+                        newBreadInForEach.setAttribute("value", bread);
+                        newBreadInForEach.appendChild(newContentInForEach);
+                        document.querySelector("#listAllBreeds").appendChild(newBreadInForEach);
+                    }
+                }
             }
         })
         .catch(error => {
