@@ -32,7 +32,8 @@ function handleImages(photos) {
   });
 }
 
-fetch(`https://api.pexels.com/v1/curated?page=2&per_page=40`, {
+// get curated photos on page loading
+fetch(`https://api.pexels.com/v1/curated?page=2&per_page=15`, {
   headers: {
     Authorization: "TrAOaNFEuh7CtaF1xbqatu4L7Je9VPjuwlGWdEZ9oVbfDaoCpyldLRZd",
   },
