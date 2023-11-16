@@ -1,16 +1,16 @@
 html,
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #222;
+  background-color: #19161c;
   color: #ccc;
   margin: 0;
 }
 a,
 a:visited {
-  color: #6dc;
+  color: #37c8ab;
 }
 a:hover {
-  color: #4ba;
+  color: #4ec;
 }
 #header {
   display: flex;
@@ -27,17 +27,43 @@ a:hover {
 }
 
 #nav #searchForm button {
-  padding: 6px;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 49px 10px 24px;
   font-size: 17px;
+  border: none;
+  background-color: #37c8ab;
+  color: #19161c;
+  font-size: 20px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 #searchForm {
   display: flex;
   margin: auto 0;
 }
+#nav #searchForm #searchInput {
+  padding: 10px 10px 10px 20px;
+  width: 240px;
+  height: 50px;
+  background: none;
+  border: 4px solid #37c8ab;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: rgb(68, 187, 167);
+  outline: none;
+  transition: 0.5s;
+}
 
 #content {
   height: 100%;
+  width: 100%;
   overflow: scroll;
+  margin: 0 0 50px 0;
+  align-items: center;
 }
 #photosGrid {
   background-color: #333;
@@ -45,7 +71,6 @@ a:hover {
   justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
-  /* max-width: 1040px; */
   width: 100%;
   min-width: 320px;
   margin: 0 auto 40px auto;
@@ -101,4 +126,19 @@ a:hover {
 }
 .noBreak {
   white-space: nowrap;
+}
+#photoShow {
+  display: grid;
+  height: 100%;
+}
+.fullImage {
+  max-width: 100%;
+  max-height: 100vh;
+  margin: auto;
+}
+#photoDetails {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 20px auto;
 }
