@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <select id="listAllBreeds" onchange="getDog((this))"></select>
-    <div id="imgResult">
-        <img />
-    </div>
+    <main>
+        <section id="imgResult" class="content">
+            <div class="dog">
+                <img src="" class="image" id="dog" alt="dog">
+            </div>
+            <select class="select" id="listAllBreeds" onchange="getDog((this))"></select>
+        </section>
+    </main>
+    <div id="loader"></div>
     <script src="./index.js"></script>
 </body>
 </html>
