@@ -125,3 +125,23 @@ body {
     font-size: 30px;
     text-align: center
 }
+
+.messenger {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    width: 50px;
+    background-color: transparent;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .25s
+}
+
+.messenger:hover {
+    width: 55px
+}
+
+.messenger img {
+    width: 100%
+}
