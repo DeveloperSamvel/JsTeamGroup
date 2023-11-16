@@ -1,11 +1,11 @@
-function getDog(elementsBox) {
+function showDog(elementsBox) {
     let breed = "";
     if (elementsBox[elementsBox.selectedIndex].value) {
         breed = elementsBox[elementsBox.selectedIndex].value;
     }
 
     if (breed === "") {
-        document.querySelector("#imgResult").querySelector("img").setAttribute('src', "");
+        document.querySelector("#imgResult").querySelector("img").setAttribute('src', "./images/choose.png");
         return;
     }
 
@@ -28,7 +28,12 @@ function getDog(elementsBox) {
             return response.json()
         })
         .then(data => {
-            document.querySelector("#imgResult").querySelector("img").setAttribute('src', data.message);
+            let img = document.querySelector("#imgResult").querySelector("img");
+            img.onerror = function() {
+                alert('Ошибка загрузки изображения');
+                img.setAttribute('src', './images/choose.png');
+            };
+            img.setAttribute('src', data.message);
         })
         .catch(error => {
             console.error('Ошибка запроса:', error);
@@ -87,8 +92,6 @@ function getListAllBreeds() {
         });
 }
 
-getListAllBreeds();
-
 function loading() {
     var mainToHide = document.body.children[0];
     mainToHide.style.display = 'none';
@@ -97,6 +100,7 @@ function loading() {
     window.onload = function() {
         mainToHide.style.display = '';
         document.querySelector('#loader').style.display = 'none';
+        getListAllBreeds();
     }
 }
 
