@@ -1,0 +1,30 @@
+
+
+#loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #242a38;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#loader:before {
+    content: "";
+    display: block;
+    border: 6px solid #f4f4f4;
+    border-radius: 50%;
+    border-top-color: #4d5464;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}

@@ -88,3 +88,16 @@ function getListAllBreeds() {
 }
 
 getListAllBreeds();
+
+function loading() {
+    var mainToHide = document.body.children[0];
+    mainToHide.style.display = 'none';
+
+
+    window.onload = function() {
+        mainToHide.style.display = '';
+        document.querySelector('#loader').style.display = 'none';
+    }
+}
+
+loading();
