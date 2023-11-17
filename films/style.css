@@ -1,0 +1,148 @@
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #19161c;
+  color: #ccc;
+  margin: 0;
+}
+a,
+a:visited {
+  color: #37c8ab;
+}
+a:hover {
+  color: #4ec;
+}
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  padding: 20px;
+  max-width: 1040px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+#nav {
+  overflow: hidden;
+}
+
+#nav #searchForm button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 49px 10px 24px;
+  font-size: 17px;
+  border: none;
+  background-color: #37c8ab;
+  color: #19161c;
+  font-size: 20px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+#searchForm {
+  display: flex;
+  margin: auto 0;
+}
+#nav #searchForm #searchInput {
+  padding: 14px 10px 10px 20px;
+  width: 240px;
+  height: 50px;
+  background: none;
+  border: 2px solid #37c8ab;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: #37c8ab;
+  outline: none;
+  transition: 0.5s;
+}
+::placeholder {
+  color: #2a8;
+}
+
+#content {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  margin: 0 0 50px 0;
+  align-items: center;
+}
+#photosGrid {
+  background-color: #333;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 320px;
+  margin: 0 auto 40px auto;
+  padding: 30px 0;
+}
+.photoCard {
+  background-color: #444;
+  border: 2px solid #666;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin: 17px;
+}
+.photoCard img {
+  vertical-align: middle;
+  align-items: center;
+}
+.cardTitle {
+  font-size: 10px;
+  font-weight: bold;
+}
+.cardButton {
+  height: 30px;
+  right: 0px;
+}
+
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+#footer #container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #444;
+  height: 40px;
+  padding: 10px;
+  color: #ccc;
+  align-items: center;
+}
+#imageProviderLink {
+  font-size: 12px;
+}
+#imageProviderLogo {
+  right: 0px;
+  padding-right: 20px;
+}
+#pexelsLogo {
+  height: 30px;
+}
+#purpose {
+  text-align: center;
+}
+.noBreak {
+  white-space: nowrap;
+}
+#photoShow {
+  display: grid;
+  height: 100%;
+}
+.fullImage {
+  max-width: 100%;
+  max-height: 100vh;
+  margin: auto;
+}
+#photoDetails {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 40px auto;
+  height: 70px;
+}
