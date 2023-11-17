@@ -1,4 +1,6 @@
-document.getElementById("searchButton").addEventListener("click", () => {
+document.getElementById("searchButton").addEventListener("click", searchBooks);
+
+function searchBooks() {
   const searchTerm = document.getElementById("searchInput").value;
   const url = `https://openlibrary.org/search.json?q=${searchTerm.replaceAll(
     " ",
@@ -7,13 +9,14 @@ document.getElementById("searchButton").addEventListener("click", () => {
 
   fetch(url)
     .then((response) => response.json())
-    .then((data) => generateNeededView(data));
-});
+    .then((data) => generatePaginationView(data));
+}
 
-function generateNeededView(data) {
+function generatePaginationView(data) {
   const resultsContainer = document.getElementById("results");
   const totalCountOfResults = data.numFound;
   const resultsData = data.docs;
+  const pageCount = Math.ceil(totalCountOfResults / 100);
 
   resultsContainer.innerHTML = "";
 
@@ -21,10 +24,12 @@ function generateNeededView(data) {
   totalCountElement.innerHTML = `Total count of your search result is: ${totalCountOfResults}`;
   resultsContainer.appendChild(totalCountElement);
 
+  generatePaginationButtons(pageCount);
+
   for (let i = 0; i < resultsData.length; i++) {
     const resultDiv = document.createElement("div");
-
     const bookData = resultsData[i];
+
     const title = `Title: ${bookData.title}`;
     const authorName = `Author name: ${bookData.author_name}`;
     const firstPublishYear = `First publish year: ${bookData.first_publish_year}`;
@@ -48,4 +53,28 @@ function generateNeededView(data) {
 
     resultsContainer.appendChild(resultDiv);
   }
+}
+
+function generatePaginationButtons(pageCount) {
+  const paginationContainer = document.getElementById("pagination");
+  paginationContainer.innerHTML = "";
+
+  for (let i = 1; i <= pageCount; i++) {
+    const pageButton = document.createElement("button");
+    pageButton.innerHTML = i;
+    pageButton.addEventListener("click", () => goToPage(i));
+    paginationContainer.appendChild(pageButton);
+  }
+}
+
+function goToPage(pageNumber) {
+  const searchTerm = document.getElementById("searchInput").value;
+  const url = `https://openlibrary.org/search.json?q=${searchTerm.replaceAll(
+    " ",
+    "+"
+  )}&page=${pageNumber}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => generateNeededView(data));
 }
