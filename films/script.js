@@ -1,26 +1,28 @@
 const apiKey = "TrAOaNFEuh7CtaF1xbqatu4L7Je9VPjuwlGWdEZ9oVbfDaoCpyldLRZd";
 const searchForm = document.getElementById("searchForm");
 const photosGrid = document.querySelector("#photosGrid");
-const rootUrl = "http://lav.x10.bz";
+const rootUrl = encodeURI("http://lav.x10.bz");
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let queryText = document.getElementById("searchInput").value;
+  const queryText = document.getElementById("searchInput").value;
   try {
     checkFirstChar(queryText[0]);
     if (queryText != "") {
       photosGrid.innerHTML = "";
-      fetchPhotos(`https://api.pexels.com/v1/search?query=${queryText}`);
+      fetchPhotos(
+        encodeURI(`https://api.pexels.com/v1/search?query=${queryText}`)
+      );
     }
   } catch (e) {
     console.log(e.message);
   }
 });
 
-function checkFirstChar(char) {
-  if (["#", "%", "&", "+"].some((el) => el === char)) {
-    photosGrid.innerHTML = `You cannot start your query with special characters, like # or %`;
+function checkFirstChar(firstChar) {
+  if (["#", "%", "&", "+"].some((el) => el === firstChar)) {
+    photosGrid.innerHTML = `You cannot start your query with special characters, like #, %, &, or +.`;
     throw new Error("Incorrect query!");
   }
 }
@@ -40,6 +42,7 @@ async function fetchPhotos(url) {
       },
     })
       .then((response) => {
+        console.log(response);
         return response.json();
       })
       .then((data) => {
@@ -52,11 +55,14 @@ async function fetchPhotos(url) {
 }
 
 async function showPhoto(id) {
-  let photo = await fetch(`https://api.pexels.com/v1/photos/${id}`, {
-    headers: {
-      Authorization: `${apiKey}`,
-    },
-  })
+  const photo = await fetch(
+    encodeURI(`https://api.pexels.com/v1/photos/${id}`),
+    {
+      headers: {
+        Authorization: `${apiKey}`,
+      },
+    }
+  )
     .then((response) => {
       return response.json();
     })
@@ -95,4 +101,4 @@ async function showPhoto(id) {
 }
 
 // get curated photos on page loading
-fetchPhotos(`https://api.pexels.com/v1/curated?page=1&per_page=15`);
+fetchPhotos(encodeURI(`https://api.pexels.com/v1/curated?page=1&per_page=15`));
