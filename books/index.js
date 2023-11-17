@@ -9,10 +9,10 @@ function searchBooks() {
 
   fetch(url)
     .then((response) => response.json())
-    .then((data) => generatePaginationView(data));
+    .then((data) => generateNeededView(data));
 }
 
-function generatePaginationView(data) {
+function generateNeededView(data) {
   const resultsContainer = document.getElementById("results");
   const totalCountOfResults = data.numFound;
   const resultsData = data.docs;
@@ -55,16 +55,40 @@ function generatePaginationView(data) {
   }
 }
 
+let startingValue = 1;
+let endValue = 10;
+let totalPages = 0;
+
 function generatePaginationButtons(pageCount) {
   const paginationContainer = document.getElementById("pagination");
   paginationContainer.innerHTML = "";
 
-  for (let i = 1; i <= pageCount; i++) {
+  totalPages = Math.ceil(pageCount / 10);
+
+  for (let i = startingValue; i <= endValue && i <= totalPages; i++) {
     const pageButton = document.createElement("button");
     pageButton.innerHTML = i;
     pageButton.addEventListener("click", () => goToPage(i));
     paginationContainer.appendChild(pageButton);
   }
+
+  if (endValue < totalPages) {
+    const moreButton = document.createElement("button");
+    moreButton.innerHTML = "More";
+    moreButton.addEventListener("click", showMorePages);
+    paginationContainer.appendChild(moreButton);
+  }
+}
+
+function showMorePages() {
+  startingValue = endValue + 1;
+  endValue = startingValue + 9;
+
+  if (endValue > totalPages) {
+    endValue = totalPages;
+  }
+
+  generatePaginationButtons(totalPages);
 }
 
 function goToPage(pageNumber) {
