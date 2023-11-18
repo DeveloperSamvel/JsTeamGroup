@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
+    background-color: #90a3b4;
   }
   
   header {
@@ -48,16 +48,7 @@ body {
     border-radius: 8px;
   }
   
-  a {
-    text-decoration: none;
-    color: #3498db;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  a:hover {
-    color: #2980b9;
-  }
-  
+
   .more-button {
     position: absolute;
     bottom: 10px;
@@ -80,5 +71,27 @@ body {
     height: 35px; 
     font-size: 16px; 
     padding: 8px; 
+  }
+  
+  .close-button{
+    font-size: 20px; 
+    padding: 15px 30px; 
+    background-color: #11D538;
+    color: #fff; border: none;
+    border-radius: 
+    5px; cursor: pointer; 
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+
+
+  .details-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: 	#567d9c;
+    border-radius: 8px;
+    text-align: center; 
   }
   
