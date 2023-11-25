@@ -1,3 +1,5 @@
+// Site is live at: http://lav.x10.bz
+
 const apiKey = "TrAOaNFEuh7CtaF1xbqatu4L7Je9VPjuwlGWdEZ9oVbfDaoCpyldLRZd";
 const searchForm = document.getElementById("searchForm");
 const photosGrid = document.querySelector("#photosGrid");
@@ -42,7 +44,6 @@ async function fetchPhotos(url) {
       },
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((data) => {
