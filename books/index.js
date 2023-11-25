@@ -32,10 +32,14 @@ function generateNeededView(data) {
 
   resultsContainer.innerHTML = "";
 
+  const resultCountElement = document.getElementById("result-count");
+  if (resultCountElement) {
+    resultCountElement.innerHTML = "";
+  }
   const totalCountElement = document.createElement("p");
   totalCountElement.classList.add("search-result-count");
   totalCountElement.innerHTML = `Total count of your search result is: ${totalCountOfResults}`;
-  resultsContainer.appendChild(totalCountElement);
+  resultCountElement.append(totalCountElement);
 
   generatePaginationButtons(pageCount);
 
@@ -48,7 +52,8 @@ function generateNeededView(data) {
     const title = `Title: ${bookData.title}`;
     const authorName = `Author name: ${bookData.author_name}`;
     const firstPublishYear = `First publish year: ${bookData.first_publish_year}`;
-    const subjectItems = `Subject: ${bookData?.subject?.slice(0, 5).join(", ")}`;
+    const subjectData = bookData?.subject?.slice(0, 5).join(", ") || bookData?.title;
+    const subjectItems = `Subject: ${subjectData}`;
 
     const titleElement = document.createElement("h4");
     titleElement.classList.add("book-title");
@@ -69,6 +74,12 @@ function generateNeededView(data) {
     subjectsElement.classList.add("book-subjects");
     subjectsElement.innerHTML = subjectItems;
     resultDiv.appendChild(subjectsElement);
+
+    const coverImg = document.createElement("img");
+    coverImg.classList.add("book-cover");
+    coverImg.src = bookData?.cover_i ? `https://covers.openlibrary.org/b/id/${bookData?.cover_i}-L.jpg` : 'cover.jpg';
+    coverImg.alt = "Book Cover";
+    resultDiv.appendChild(coverImg);
 
     resultsContainer.appendChild(resultDiv);
   }
