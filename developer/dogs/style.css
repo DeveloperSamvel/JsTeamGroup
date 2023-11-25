@@ -62,8 +62,9 @@ body {
 }
 
 .image {
+    max-width: 200px;
     max-height: 200px;
-    margin-top: 20px;
+    margin-top: -80px;
     object-fit: contain
 }
 
@@ -83,6 +84,8 @@ body {
     background-size: 20px auto;
     background-repeat: no-repeat;
     background-position: calc(100% - 10px) 50%;
+    position: fixed;
+    bottom: 20px;
 }
 
 .menu {

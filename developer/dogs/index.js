@@ -30,8 +30,9 @@ function showDog(elementsBox) {
         .then(data => {
             let img = document.querySelector("#imgResult").querySelector("img");
             img.onerror = function() {
-                alert('Ошибка загрузки изображения');
                 img.setAttribute('src', './images/choose.png');
+                document.querySelector("#listAllBreeds").value = "";
+                alert('Error loading image');
             };
             img.setAttribute('src', data.message);
         })
