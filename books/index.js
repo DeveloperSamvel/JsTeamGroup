@@ -52,8 +52,8 @@ function generateNeededView(data) {
     const title = `Title: ${bookData.title}`;
     const authorName = `Author name: ${bookData.author_name}`;
     const firstPublishYear = `First publish year: ${bookData.first_publish_year}`;
-    const subData = bookData?.subject?.slice(0, 5).join(", ") || 'without subject';
-    const subjectItems = `Subject: ${subData}`;
+    const subjectData = bookData?.subject?.slice(0, 5).join(", ") || bookData?.title;
+    const subjectItems = `Subject: ${subjectData}`;
 
     const titleElement = document.createElement("h4");
     titleElement.classList.add("book-title");
@@ -77,7 +77,7 @@ function generateNeededView(data) {
 
     const coverImg = document.createElement("img");
     coverImg.classList.add("book-cover");
-    coverImg.src = `https://covers.openlibrary.org/b/id/${bookData?.cover_i}-L.jpg`;
+    coverImg.src = bookData?.cover_i ? `https://covers.openlibrary.org/b/id/${bookData?.cover_i}-L.jpg` : 'cover.jpg';
     coverImg.alt = "Book Cover";
     resultDiv.appendChild(coverImg);
 
