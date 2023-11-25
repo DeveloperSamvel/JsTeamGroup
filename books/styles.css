@@ -1,0 +1,75 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#searchForm {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#searchInput {
+  padding: 8px;
+  font-size: 16px;
+}
+
+#searchButton {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#result-count {
+  text-align: center;
+}
+
+.book-result {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 250px;
+  background-color: #f9f9f9;
+}
+
+.book-title {
+  margin-top: 0;
+}
+
+.book-author,
+.book-publish-year,
+.book-subjects {
+  margin-bottom: 5px;
+}
+
+#pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
