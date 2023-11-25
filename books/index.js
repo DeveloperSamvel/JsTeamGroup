@@ -85,6 +85,7 @@ function generateNeededView(data) {
   }
 }
 
+let currentPage = 1;
 let startingValue = 1;
 let endValue = 10;
 let totalPages = 0;
@@ -95,7 +96,14 @@ function generatePaginationButtons(pageCount) {
 
   totalPages = Math.ceil(pageCount / 10);
 
-  for (let i = startingValue; i <= endValue && i <= totalPages; i++) {
+  if (startingValue > 1) {
+    const backButton = document.createElement("button");
+    backButton.innerHTML = "Back";
+    backButton.addEventListener("click", goBack);
+    paginationContainer.appendChild(backButton);
+  }
+
+  for (let i = startingValue; i <= endValue && i <= totalPages * 10; i++) {
     const pageButton = document.createElement("button");
     pageButton.innerHTML = i;
     pageButton.addEventListener("click", () => goToPage(i));
@@ -117,6 +125,13 @@ function showMorePages() {
   if (endValue > totalPages) {
     endValue = totalPages;
   }
+
+  generatePaginationButtons(totalPages);
+}
+
+function goBack() {
+  startingValue -= 10;
+  endValue = startingValue + 9;
 
   generatePaginationButtons(totalPages);
 }
